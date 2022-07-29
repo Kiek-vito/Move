@@ -1,6 +1,5 @@
 package com.example.move.ui.adapter
 
-import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -16,7 +15,6 @@ class MoviesPageAdapter: PagingDataAdapter<Movies, MoviesViewHolder>(MovieCompar
 
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
         val movie = getItem(position)
-        Log.d("QWE","onBindView ${movie?.src}")
         holder.binding.apply {
 
             titleMovie.text = movie?.title
@@ -43,7 +41,6 @@ class MoviesViewHolder(val binding: ItemMovieBinding) : RecyclerView.ViewHolder(
 }
 object MovieComparator : DiffUtil.ItemCallback<Movies>() {
     override fun areItemsTheSame(oldItem: Movies, newItem: Movies): Boolean {
-        Log.d("QWE","onBindView")
         return oldItem.title == newItem.title
     }
 

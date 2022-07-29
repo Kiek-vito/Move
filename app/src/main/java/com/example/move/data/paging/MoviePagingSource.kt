@@ -2,6 +2,7 @@ package com.example.move.data.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.example.move.common.Constants
 import com.example.move.data.api.MovieService
 import com.example.move.data.dto.toMovies
 import com.example.move.model.Movies
@@ -22,7 +23,7 @@ class MoviePagingSource @Inject constructor(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movies> {
         return try {
             val position = params.key ?: 1
-            val response = movieService.getMovies("rmqHqcO6GovGBAZy2AObaG6608d1KPGe",(position-1)*20)
+            val response = movieService.getMovies(Constants.API_KEY,(position-1)*20)
             LoadResult.Page(data = response.results.map { it.toMovies() }, prevKey = if (position == 1) null else position - 1,
                 nextKey = position + 1)
 
